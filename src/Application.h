@@ -2,15 +2,16 @@
 #define APPLICATION_H
 
 #include <SDL2/SDL.h>
-#include <glad/glad.h>
+#include "Bird.h"
 #include <iostream>
+
 
 class Application {
     private:
         SDL_Window* window;
         SDL_GLContext glContext;
         bool running;
-
+        Bird* bird;
     public:
         void init();
         bool isRunning();

@@ -42,6 +42,7 @@ void Application::init() {
     }
 
     std::cout << "Successfully loaded OpenGL " << glGetString(GL_VERSION) << std::endl;
+    bird = new Bird();
     running = true;
 }
 
@@ -50,6 +51,9 @@ bool Application::isRunning() {
 }
 
 void Application::render() {
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    bird->render();
     SDL_GL_SwapWindow(window);
 }
 
@@ -59,13 +63,14 @@ void Application::update() {
 
 void Application::handleEvents() {
     SDL_Event event;
-    SDL_PollEvent(&event);
-    switch(event.type){
-        case SDL_QUIT:
-            running = false;
-            break;
-        default:
-            break;
+    while (SDL_PollEvent(&event)) {
+        switch(event.type){
+            case SDL_QUIT:
+                running = false;
+                break;
+            default:
+                break;
+        }
     }
 }
 

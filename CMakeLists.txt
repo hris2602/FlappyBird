@@ -15,6 +15,8 @@ add_executable(${PROJECT_NAME}
     src/Application.cpp
     src/stb_image.cpp
     src/Shader.cpp
+    src/Collision.cpp
+    src/Bird.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)

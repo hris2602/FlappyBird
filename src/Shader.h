@@ -3,12 +3,14 @@
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
-#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 
 class Shader {
     private:
-        GLuint shader;
+        GLuint program;
         void checkCompileErrors(GLuint shader, const std::string & type);
     public:
         Shader() {}
