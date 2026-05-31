@@ -1,0 +1,25 @@
+# --- Build Directories ---
+# Never push compiled code or CMake caches
+build/
+build-win/
+out/
+bin/
+CMakeCache.txt
+CMakeFiles/
+# --- IDEs and Editors ---
+# Ignore VS Code settings (especially since yours contains hardcoded 
+# absolute paths like /home/hris/... that won't work on other PCs)
+.vscode/
+.idea/
+*.swp
+*.suo
+
+# --- Binaries & Libraries ---
+# Ignore any rogue compiled files that sneak out of the build folder
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.obj
+*.o
