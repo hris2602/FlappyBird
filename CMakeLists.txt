@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
     src/Shader.cpp
     src/Collision.cpp
     src/Bird.cpp
+    src/InputManager.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)

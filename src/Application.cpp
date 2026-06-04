@@ -16,7 +16,7 @@ void Application::init() {
         SDL_WINDOWPOS_CENTERED,
         800,
         600,
-        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
+        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
     );
 
     if (!window) {
@@ -44,6 +44,7 @@ void Application::init() {
     std::cout << "Successfully loaded OpenGL " << glGetString(GL_VERSION) << std::endl;
     bird = new Bird();
     running = true;
+    InputManager::GetInstance().BindAction("Jump", SDL_SCANCODE_SPACE);
 }
 
 bool Application::isRunning() {
@@ -51,14 +52,14 @@ bool Application::isRunning() {
 }
 
 void Application::render() {
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.2f, 0.6f, 0.8f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bird->render();
     SDL_GL_SwapWindow(window);
 }
 
 void Application::update() {
-
+    bird->update();
 }
 
 void Application::handleEvents() {
@@ -67,6 +68,19 @@ void Application::handleEvents() {
         switch(event.type){
             case SDL_QUIT:
                 running = false;
+                break;
+            case SDL_WINDOWEVENT:
+                if(event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+                    float newWidth = event.window.data1;
+                    float newHeight = event.window.data2;
+                    
+                    float aspectRatio = newWidth / newHeight;
+
+                    glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
+                    bird->changeProjection(projection);
+
+                    glViewport(0,0, newWidth, newHeight);
+                }
                 break;
             default:
                 break;

@@ -5,12 +5,13 @@ Bird::Bird() {
     collision.x = 0;
     collision.y = 0;
     collision.radius = 0;
+    velocity = 0.0f;
 
     float vertices[] = {
-        -0.1, -0.1, 0.0,    0.0, 0.0,
-        -0.1,  0.1, 0.0,    0.0, 1.0,
-         0.1, -0.1, 0.0,    1.0, 0.0,
-         0.1,  0.1, 0.0,    1.0, 1.0 
+        -0.15, -0.15, 0.0,    0.0, 0.0,
+        -0.15,  0.15, 0.0,    0.0, 1.0,
+         0.15, -0.15, 0.0,    1.0, 0.0,
+         0.15,  0.15, 0.0,    1.0, 1.0 
     };
 
     GLuint indices[] = {
@@ -67,17 +68,46 @@ Bird::Bird() {
     glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
 
 
+    position = glm::vec2(0.0f, 0.0f);
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
+
+
     shader->use();
+
     shader->setInt("ourTexture", 0);
     shader->setMat4("projection", projection);
+    shader->setMat4("model", model);
 }
 
 Bird::~Bird() {}
 
 void Bird::render() {
     shader->use();
+
     glBindTexture(GL_TEXTURE_2D, texture);
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+}
+
+void Bird::update() {
+    if(InputManager::GetInstance().IsActionPressed("Jump")) {
+       velocity = JUMP;
+    }
+
+    velocity += GRAVITY * DELTATIME;
+    position.y += velocity * DELTATIME;
+
+    
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
+    shader->use();
+    shader->setMat4("model", model);
+}
+
+
+void Bird::changeProjection(const glm::mat4 & projection) {
+    shader->use();
+    shader->setMat4("projection", projection);
 }
