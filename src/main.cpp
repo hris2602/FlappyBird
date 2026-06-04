@@ -8,6 +8,9 @@ int main(int argc, char* argv[]) {
 
     app->init();
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     while (app->isRunning())
     {
         app->handleEvents();

@@ -17,6 +17,8 @@ class Shader {
         Shader(const char* vertexSource, const char* fragmentSource);
         ~Shader();
         void use();
+        void setInt(const std::string & name, int value) const;
+        void setMat4(const std::string & name, const glm::mat4 & value) const;
 };
 
 #endif
