@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "Bird.h"
 #include <iostream>
+#include "Pillars.h"
 
 
 class Application {
@@ -12,6 +13,10 @@ class Application {
         SDL_GLContext glContext;
         bool running;
         Bird* bird;
+
+
+        //temp
+        Pillars* pillars;
     public:
         void init();
         bool isRunning();

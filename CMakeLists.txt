@@ -18,6 +18,9 @@ add_executable(${PROJECT_NAME}
     src/Collision.cpp
     src/Bird.cpp
     src/InputManager.cpp
+    src/Pillar.cpp
+    src/Pillars.cpp
+    src/PillarPair.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)

@@ -7,8 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "InputManager.h"
 
-#define GRAVITY -9.0f
-#define JUMP 3.5f
+#define GRAVITY -7.0f
+#define JUMP 2.2f
 #define DELTATIME 0.016f
 
 class Bird {

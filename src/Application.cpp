@@ -43,6 +43,7 @@ void Application::init() {
 
     std::cout << "Successfully loaded OpenGL " << glGetString(GL_VERSION) << std::endl;
     bird = new Bird();
+    pillars = new Pillars();
     running = true;
     InputManager::GetInstance().BindAction("Jump", SDL_SCANCODE_SPACE);
 }
@@ -55,11 +56,13 @@ void Application::render() {
     glClearColor(0.2f, 0.6f, 0.8f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bird->render();
+    pillars->render();
     SDL_GL_SwapWindow(window);
 }
 
 void Application::update() {
     bird->update();
+    pillars->update();
 }
 
 void Application::handleEvents() {
