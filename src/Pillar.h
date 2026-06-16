@@ -16,7 +16,7 @@ class Pillar {
         Pillar(float startX, float startY);
         ~Pillar();
         void update();
-        float getXPosition();
+        glm::vec2 getPosition();
         void recycle(float x, float y);
 };
 

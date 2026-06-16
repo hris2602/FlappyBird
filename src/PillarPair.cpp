@@ -20,8 +20,12 @@ void PillarPair::update() {
     top->update();
 }
 
-float PillarPair::getXPosition() {
-    return bottom->getXPosition();
+glm::vec2 PillarPair::getBottomPosition() {
+    return bottom->getPosition();
+}
+
+glm::vec2 PillarPair::getTopPosition() {
+    return top->getPosition();
 }
 
 void PillarPair::recycle(float x, float gapCenter_y, float gap_height) {

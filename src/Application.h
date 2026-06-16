@@ -5,6 +5,7 @@
 #include "Bird.h"
 #include <iostream>
 #include "Pillars.h"
+#include "TextRenderer.h"
 
 
 class Application {
@@ -13,6 +14,8 @@ class Application {
         SDL_GLContext glContext;
         bool running;
         Bird* bird;
+        bool end;
+        TextRenderer* textRenderer;
 
 
         //temp

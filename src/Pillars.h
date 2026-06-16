@@ -17,6 +17,7 @@ class Pillars {
         ~Pillars();
         void render();
         void update();
+        bool checkCollision(float bX, float bY, float bR);
 };
 
 #endif

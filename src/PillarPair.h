@@ -13,7 +13,8 @@ class PillarPair {
         ~PillarPair();
         void render();
         void update();
-        float getXPosition();
+        glm::vec2 getBottomPosition();
+        glm::vec2 getTopPosition();
         void recycle(float x, float gapCenter_y, float gap_height);
 };
 

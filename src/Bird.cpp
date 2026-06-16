@@ -2,10 +2,8 @@
 
 Bird::Bird() {
     shader = new Shader("src/birdVertexShader.glsl", "src/birdFragmentShader.glsl");
-    collision.x = 0;
-    collision.y = 0;
-    collision.radius = 0;
     velocity = 0.0f;
+    radius = 0.09f;
 
     float vertices[] = {
         -0.15, -0.15, 0.0,    0.0, 0.0,
@@ -114,4 +112,12 @@ void Bird::update() {
 void Bird::changeProjection(const glm::mat4 & projection) {
     shader->use();
     shader->setMat4("projection", projection);
+}
+
+glm::vec2 Bird::getPosition() {
+    return position;
+}
+
+GLfloat Bird::getRadius() {
+    return radius;
 }

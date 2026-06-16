@@ -78,8 +78,8 @@ void Pillar::update() {
     shader->setMat4("model", model);
 }
 
-float Pillar::getXPosition() {
-    return position.x;
+glm::vec2 Pillar::getPosition() {
+    return position;
 }
 
 void Pillar::recycle(float x, float y){

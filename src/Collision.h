@@ -19,6 +19,7 @@ struct Circle
 class Collision {
     public:
         static bool checkCollision(const Circle & circle, const Rectangle & rectangle);
+        static bool checkCollision(float cX, float cY, float cR, float rX, float rY, float w, float h);
 };
 
 #endif

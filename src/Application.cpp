@@ -45,7 +45,10 @@ void Application::init() {
     bird = new Bird();
     pillars = new Pillars();
     running = true;
+    end = false;
+    textRenderer = new TextRenderer(800, 600);
     InputManager::GetInstance().BindAction("Jump", SDL_SCANCODE_SPACE);
+    textRenderer->load("sprites/Black_Ops_One/BlackOpsOne-Regular.ttf", 20);
 }
 
 bool Application::isRunning() {
@@ -57,12 +60,18 @@ void Application::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bird->render();
     pillars->render();
+    textRenderer->renderText("0", 100.0f, 100.0f, 2.0f, glm::vec3(1.0f, 1.0f, 1.0f));
     SDL_GL_SwapWindow(window);
 }
 
 void Application::update() {
-    bird->update();
-    pillars->update();
+    glm::vec2 birdPos = bird->getPosition();
+    if(!pillars->checkCollision(birdPos.x, birdPos.y, bird->getRadius()) && !end) {
+        bird->update();
+        pillars->update();
+    } else {
+        end = true;
+    }
 }
 
 void Application::handleEvents() {

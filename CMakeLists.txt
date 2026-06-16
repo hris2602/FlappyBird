@@ -21,9 +21,11 @@ add_executable(${PROJECT_NAME}
     src/Pillar.cpp
     src/Pillars.cpp
     src/PillarPair.cpp
+    src/TextRenderer.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)
+# target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)
 
 target_include_directories(${PROJECT_NAME} PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -33,13 +35,13 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Freetype::Freetype
     glm::glm
     SDL2::SDL2main
-    SDL2::SDL2      # <-- This is the core library you were missing!
+    SDL2::SDL2      
     opengl32
 )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-        $<TARGET_RUNTIME_DLLS:${PROJECT_NAME}> 
-        $<TARGET_FILE_DIR:${PROJECT_NAME}>
-    COMMAND_EXPAND_LISTS
-)
+# add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+#         $<TARGET_RUNTIME_DLLS:${PROJECT_NAME}> 
+#         $<TARGET_FILE_DIR:${PROJECT_NAME}>
+#     COMMAND_EXPAND_LISTS
+# )

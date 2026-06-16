@@ -14,6 +14,7 @@
 class Bird {
     private:
         glm::vec2 position;
+        GLfloat radius;
         Shader* shader;
         Circle collision;
         GLuint EBO, VAO, VBO; 
@@ -25,6 +26,8 @@ class Bird {
         void render();
         void update();
         void changeProjection(const glm::mat4 & projection);
+        glm::vec2 getPosition();
+        GLfloat getRadius();
 };
 
 #endif

@@ -11,3 +11,15 @@ bool Collision::checkCollision(const Circle & circle, const Rectangle & rectangl
 
     return distance <= circle.radius * circle.radius;
 }
+
+bool Collision::checkCollision(float cX, float cY, float cR, float rX, float rY, float w, float h) {
+    float px = std::max(rX, std::min(cX, rX + w));
+    float py = std::max(rY, std::min(cY, rY + h));
+
+    float distanceX = cX - px;
+    float distanceY = cY - py;
+
+    float distance = (distanceX * distanceX) + (distanceY * distanceY);
+
+    return distance <= cR * cR;
+}
