@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Pillars.h"
 #include "TextRenderer.h"
+#include "Button.h"
 
 
 class Application {
@@ -17,9 +18,13 @@ class Application {
         bool end;
         TextRenderer* textRenderer;
 
+        Shader* pillarShader;
+        Shader* buttonShader;
 
         //temp
         Pillars* pillars;
+
+        Button* button;
     public:
         void init();
         bool isRunning();

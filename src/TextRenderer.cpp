@@ -1,6 +1,6 @@
 #include "TextRenderer.h"
 
-TextRenderer::TextRenderer(unsigned int width, unsigned height) {
+TextRenderer::TextRenderer(float width, float height) {
     shader = new Shader("src/TextRendererVertex.glsl", "src/TextRendererFragment.glsl");
     shader->use();
 

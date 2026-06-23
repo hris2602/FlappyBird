@@ -68,7 +68,7 @@ Bird::Bird() {
 
     position = glm::vec2(0.0f, 0.0f);
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
+    model = glm::translate(model, glm::vec3(position, 0.0f));
 
 
     shader->use();

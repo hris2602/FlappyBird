@@ -15,7 +15,14 @@ class InputManager {
         const Uint8 * currentKeyboardState;
         std::vector<Uint8> previousKeyboardState;
         std::unordered_map<std::string, SDL_Scancode> actionBinding; 
+
+        Uint32 currentMouseState;
+        Uint32 previousMouseState;
+        int mouseX;
+        int mouseY;
+
     public:
+        
         static InputManager & GetInstance() {
             static InputManager instance;
             return instance;
@@ -28,6 +35,12 @@ class InputManager {
         bool isKeyPressed(SDL_Scancode key) const;
         
         bool IsActionPressed(const std::string& actionName) const;
+
+
+        bool IsMouseButtonPressed(Uint8 button) const;
+
+        int GetMouseX() const { return mouseX; }
+        int GetMouseY() const { return mouseY; }
 };
 
 #endif

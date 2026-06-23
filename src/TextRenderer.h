@@ -26,7 +26,7 @@ class TextRenderer {
         GLuint VAO, VBO, EBO;
     
         public:
-            TextRenderer(unsigned int width, unsigned height);
+            TextRenderer(float width, float height);
             ~TextRenderer();
             void load(std::string font, unsigned int fontSize);
             void renderText(std::string text, float x, float y, float scale, glm::vec3 color = glm::vec3(1.0f));

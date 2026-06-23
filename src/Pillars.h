@@ -11,9 +11,10 @@ class Pillars {
         std::mt19937 generator;
         std::uniform_real_distribution<float> random;
         std::deque<PillarPair*> pillars;
+        Shader* pillarShader;
 
     public:
-        Pillars();
+        Pillars(Shader* shader);
         ~Pillars();
         void render();
         void update();

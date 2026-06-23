@@ -1,6 +1,6 @@
 #include "Pillar.h"
 
-Pillar::Pillar(float startX, float startY) : position(startX, startY) {
+Pillar::Pillar(float startX, float startY, Shader* shader) : position(startX, startY), shader(shader) {
     float vertices[] = {
         0.5f, 1.0f, 0.0f,
         0.5f, -1.0f, 0.0f,
@@ -31,7 +31,7 @@ Pillar::Pillar(float startX, float startY) : position(startX, startY) {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    shader = new Shader("src/pillarVertexShader.glsl", "src/pillarFragmentShader.glsl");
+    // shader = new Shader("src/pillarVertexShader.glsl", "src/pillarFragmentShader.glsl");
     shader->use();
 
     float windowWidth = 800.0f;
@@ -52,7 +52,11 @@ Pillar::Pillar(float startX, float startY) : position(startX, startY) {
 }
 
 void Pillar::render() {
-    shader->use();
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
+    model = glm::scale(model, glm::vec3(0.3f, 2.0f, 1.0f)); // Scaled up to height 4.0f so it covers the screen
+    
+    shader->setMat4("model", model);
 
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -67,15 +71,7 @@ Pillar::~Pillar() {
 }
 
 void Pillar::update() {
-    shader->use();
     position.x -= 1.5 * 0.016f;
-    glm::mat4 model = glm::mat4(1.0f);
-
-    model = glm::translate(model, glm::vec3(position.x, position.y, 0.0f));
-    model = glm::scale(model, glm::vec3(0.3f, 2.0f, 1.0f));
-
-
-    shader->setMat4("model", model);
 }
 
 glm::vec2 Pillar::getPosition() {

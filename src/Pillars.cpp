@@ -1,12 +1,12 @@
 #include "Pillars.h"
 #include "Collision.h"
 
-Pillars::Pillars() : generator(std::random_device{}()), random(-0.4f, 0.4f) {
+Pillars::Pillars(Shader* shader) : generator(std::random_device{}()), random(-0.4f, 0.4f), pillarShader(shader) {
     float start = 3.3f;
     for (size_t i = 0; i < 10; i++)
     {
         float gapY = random(generator);
-        PillarPair* spawn = new PillarPair(start, gapY, 0.6f);
+        PillarPair* spawn = new PillarPair(start, gapY, 0.6f, shader);
         pillars.push_back(spawn);
         start += 1.7f;
     }
@@ -21,6 +21,8 @@ Pillars::~Pillars() {
 }
 
 void Pillars::render() {
+    pillarShader->use();
+
     for(auto& pair :pillars) {
         pair->render();
     }

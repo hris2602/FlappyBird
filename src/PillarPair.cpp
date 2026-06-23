@@ -1,8 +1,8 @@
 #include "PillarPair.h"
 
-PillarPair::PillarPair(float x, float gapCenter_y, float gap_height) {
-    bottom = new Pillar(x, gapCenter_y - (gap_height / 2.0f) - 2.0f);
-    top = new Pillar(x, gapCenter_y + (gap_height / 2.0f) + 2.0f);
+PillarPair::PillarPair(float x, float gapCenter_y, float gap_height, Shader* shader) {
+    bottom = new Pillar(x, gapCenter_y - (gap_height / 2.0f) - 2.0f, shader);
+    top = new Pillar(x, gapCenter_y + (gap_height / 2.0f) + 2.0f, shader);
 }
 
 PillarPair::~PillarPair(){

@@ -13,7 +13,7 @@ class Pillar {
         GLuint VAO, VBO, EBO;
     public:
         void render();
-        Pillar(float startX, float startY);
+        Pillar(float startX, float startY, Shader* shader);
         ~Pillar();
         void update();
         glm::vec2 getPosition();

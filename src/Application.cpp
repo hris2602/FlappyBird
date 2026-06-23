@@ -41,14 +41,20 @@ void Application::init() {
         return;
     }
 
+    pillarShader = new Shader("src/pillarVertexShader.glsl", "src/pillarFragmentShader.glsl");
+    buttonShader = new Shader("src/buttonVertexShader.glsl", "src/buttonFragmentShader.glsl");
+
     std::cout << "Successfully loaded OpenGL " << glGetString(GL_VERSION) << std::endl;
     bird = new Bird();
-    pillars = new Pillars();
+    pillars = new Pillars(pillarShader);
     running = true;
     end = false;
-    textRenderer = new TextRenderer(800, 600);
+    textRenderer = new TextRenderer(800.0f, 600.0f);
     InputManager::GetInstance().BindAction("Jump", SDL_SCANCODE_SPACE);
     textRenderer->load("sprites/Black_Ops_One/BlackOpsOne-Regular.ttf", 20);
+
+
+    button = new Button(textRenderer, buttonShader, "exit", glm::vec2(200.0f), glm::vec2(100.0f, 30.0f));
 }
 
 bool Application::isRunning() {
@@ -60,12 +66,23 @@ void Application::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     bird->render();
     pillars->render();
-    textRenderer->renderText("0", 100.0f, 100.0f, 2.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+    button->render();
+    textRenderer->renderText("0", 400.0f, 550.0f, 2.0f, glm::vec3(1.0f, 1.0f, 1.0f));
     SDL_GL_SwapWindow(window);
 }
 
 void Application::update() {
     glm::vec2 birdPos = bird->getPosition();
+    float mouseX = InputManager::GetInstance().GetMouseX();
+float mouseY = InputManager::GetInstance().GetMouseY();
+
+// Invert the Y coordinate to match OpenGL's bottom-left origin
+float glMouseY = 600.0f - mouseY; 
+
+if(button->isClicked(mouseX, glMouseY) && InputManager::GetInstance().IsMouseButtonPressed(SDL_BUTTON_LEFT)) {
+    std::cout << "yes!!!!!!!!!" << std::endl;
+}
+
     if(!pillars->checkCollision(birdPos.x, birdPos.y, bird->getRadius()) && !end) {
         bird->update();
         pillars->update();

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.21)
 project(FlappyBird C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -22,6 +22,7 @@ add_executable(${PROJECT_NAME}
     src/Pillars.cpp
     src/PillarPair.cpp
     src/TextRenderer.cpp
+    src/Button.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)

@@ -9,7 +9,7 @@ class PillarPair {
         Pillar* top;
 
     public:
-        PillarPair(float x, float gap_y, float gap_height);
+        PillarPair(float x, float gap_y, float gap_height, Shader* shader);
         ~PillarPair();
         void render();
         void update();
