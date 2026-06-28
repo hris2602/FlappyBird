@@ -64,11 +64,14 @@ void Button::render() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
-    float textX = position.x + (size.x * 0.1f);
-    float textY = position.y + (size.y * 0.35f);
+    glm::vec2 textSize = textRenderer->getTextSize(this->text, scale);
+
+    float textX = position.x + ((size.x - textSize.x) / 2);
+    float textY = position.y + ((size.y - textSize.y) / 2);
     textRenderer->renderText(text, textX, textY, scale, textColor);
 }
 
 bool Button::isClicked(float x, float y) {
+    y = 600.0f - y;
     return (x >= position.x && x <= position.x + size.x) && (y >= position.y && y <= position.y + size.y);
 }

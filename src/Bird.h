@@ -28,6 +28,7 @@ class Bird {
         void changeProjection(const glm::mat4 & projection);
         glm::vec2 getPosition();
         GLfloat getRadius();
+        void start();
 };
 
 #endif

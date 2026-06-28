@@ -8,6 +8,8 @@ class PillarPair {
         Pillar* bottom;
         Pillar* top;
 
+        bool passed;
+
     public:
         PillarPair(float x, float gap_y, float gap_height, Shader* shader);
         ~PillarPair();
@@ -16,6 +18,8 @@ class PillarPair {
         glm::vec2 getBottomPosition();
         glm::vec2 getTopPosition();
         void recycle(float x, float gapCenter_y, float gap_height);
+        bool isPassed() const;
+        void pass();
 };
 
 #endif

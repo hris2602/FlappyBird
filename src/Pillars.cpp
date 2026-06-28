@@ -2,14 +2,21 @@
 #include "Collision.h"
 
 Pillars::Pillars(Shader* shader) : generator(std::random_device{}()), random(-0.4f, 0.4f), pillarShader(shader) {
+    counter = 0;
+}
+
+void Pillars::start() {
+    pillars.clear();
     float start = 3.3f;
     for (size_t i = 0; i < 10; i++)
     {
         float gapY = random(generator);
-        PillarPair* spawn = new PillarPair(start, gapY, 0.6f, shader);
+        PillarPair* spawn = new PillarPair(start, gapY, 0.6f, pillarShader);
         pillars.push_back(spawn);
         start += 1.7f;
     }
+
+    counter = 0;
 }
 
 Pillars::~Pillars() {
@@ -31,6 +38,12 @@ void Pillars::render() {
 void Pillars::update() {
     for(auto& pair :pillars) {
         pair->update();
+        // std::cout << pair->getBottomPosition().x << std::endl;
+
+        if(pair->getTopPosition().x <= -0.35f && !pair->isPassed()) {
+            counter++;
+            pair->pass();
+        }
     }
 
     if (!pillars.empty() && pillars.front()->getBottomPosition().x <= -3.0f) {
@@ -59,4 +72,8 @@ bool Pillars::checkCollision(float bX, float bY, float bR) {
             return true;
     }
     return false;
+}
+
+GLuint Pillars::getCounter() const {
+    return counter;
 }

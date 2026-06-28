@@ -7,6 +7,7 @@
 #include "Pillars.h"
 #include "TextRenderer.h"
 #include "Button.h"
+#include "Menu.h"
 
 
 class Application {
@@ -19,12 +20,10 @@ class Application {
         TextRenderer* textRenderer;
 
         Shader* pillarShader;
-        Shader* buttonShader;
-
+        
         //temp
         Pillars* pillars;
-
-        Button* button;
+        Menu* menu;
     public:
         void init();
         bool isRunning();

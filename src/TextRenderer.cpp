@@ -113,3 +113,21 @@ void TextRenderer::renderText(std::string text, float x, float y, float scale, g
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+glm::vec2 TextRenderer::getTextSize(std::string text, float scale) {
+    float totalWidth = 0.0f;
+    float maxHeight = 0.0f;
+
+    for (char c : text) {
+        Charachter ch = characters[c];
+
+        totalWidth += (ch.Advance >> 6) * scale;
+
+        float charHeight = ch.Size.y * scale;
+        if (charHeight > maxHeight) {
+            maxHeight = charHeight;
+        }
+    }
+
+    return glm::vec2(totalWidth, maxHeight);
+}

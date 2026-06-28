@@ -13,12 +13,16 @@ class Pillars {
         std::deque<PillarPair*> pillars;
         Shader* pillarShader;
 
+        GLuint counter;
+
     public:
         Pillars(Shader* shader);
         ~Pillars();
         void render();
         void update();
         bool checkCollision(float bX, float bY, float bR);
+        GLuint getCounter() const;
+        void start();
 };
 
 #endif

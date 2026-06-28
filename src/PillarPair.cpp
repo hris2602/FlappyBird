@@ -3,6 +3,8 @@
 PillarPair::PillarPair(float x, float gapCenter_y, float gap_height, Shader* shader) {
     bottom = new Pillar(x, gapCenter_y - (gap_height / 2.0f) - 2.0f, shader);
     top = new Pillar(x, gapCenter_y + (gap_height / 2.0f) + 2.0f, shader);
+
+    passed = false;
 }
 
 PillarPair::~PillarPair(){
@@ -31,4 +33,12 @@ glm::vec2 PillarPair::getTopPosition() {
 void PillarPair::recycle(float x, float gapCenter_y, float gap_height) {
     bottom->recycle(x, gapCenter_y - (gap_height / 2.0f) - 2.0f);
     top->recycle(x, gapCenter_y + (gap_height / 2.0f) + 2.0f);
+    passed = false;
+}
+
+bool PillarPair::isPassed() const {
+    return passed;
+}
+void PillarPair::pass() {
+    passed = true;
 }

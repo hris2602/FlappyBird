@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME}
     src/PillarPair.cpp
     src/TextRenderer.cpp
     src/Button.cpp
+    src/Menu.cpp
 )
 
 target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++ -static)
