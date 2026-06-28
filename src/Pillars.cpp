@@ -6,6 +6,10 @@ Pillars::Pillars(Shader* shader) : generator(std::random_device{}()), random(-0.
 }
 
 void Pillars::start() {
+    for (auto& pair : pillars)
+    {
+        delete pair;
+    }
     pillars.clear();
     float start = 3.3f;
     for (size_t i = 0; i < 10; i++)
@@ -24,7 +28,6 @@ Pillars::~Pillars() {
     {
         delete pair;
     }
-    
 }
 
 void Pillars::render() {

@@ -1,5 +1,7 @@
 #include "Shader.h"
 
+#include <filesystem>
+
 
 void Shader::checkCompileErrors(GLuint shader, const std::string & type) {
     GLint success;
@@ -29,9 +31,12 @@ Shader::Shader(const char* vertexSource, const char* fragmentSource) {
     fragmentSourceFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
     try {
+
+std::cout << "Searching for shaders in: " << std::filesystem::current_path() << std::endl;
+        std::cout << "Targeting: " << std::filesystem::absolute(vertexSource) << std::endl;
+
         vertexSourceFile.open(vertexSource);
         fragmentSourceFile.open(fragmentSource);
-
         if (!vertexSourceFile.is_open() || !fragmentSourceFile.is_open()) {
             std::cout << "ERROR::SHADER::FILE_NOT_FOUND: Check your working directory!" << std::endl;
             return;

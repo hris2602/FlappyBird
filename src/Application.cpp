@@ -89,7 +89,7 @@ void Application::update() {
         bool start = menu->startButton();
         end = !start;
         if(start) {
-            std::cout << "works" << std::endl;
+            // std::cout << "works" << std::endl;
             pillars->start();
             bird->start();
         }
@@ -123,6 +123,12 @@ void Application::handleEvents() {
 }
 
 void Application::clean() {
+    delete menu;        
+    delete textRenderer; 
+    delete pillars;     
+    delete pillarShader; 
+    delete bird;      
+    
     SDL_DestroyWindow(window);
     SDL_GL_DeleteContext(glContext);
     SDL_Quit();

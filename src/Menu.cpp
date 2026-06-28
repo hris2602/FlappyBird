@@ -45,7 +45,7 @@ Menu::Menu(TextRenderer* textRenderer) : textRenderer(textRenderer) {
     shader->setMat4("model", model);
 
     //button init
-    buttonShader = new Shader("src/buttonVertexShader.glsl", "src/buttonFragmentShader.glsl");
+    buttonShader = new Shader("src/ButtonVertexShader.glsl", "src/ButtonFragmentShader.glsl");
 
     start = new Button(textRenderer, buttonShader, "START", glm::vec2(260.0f, 60.0f), glm::vec2(100.0f, 40.0f));
     exit = new Button(textRenderer, buttonShader, "EXIT", glm::vec2(440.0f, 60.0f), glm::vec2(100.0f, 40.0f));
@@ -61,6 +61,7 @@ Menu::~Menu() {
     delete shader;
     delete start;
     delete exit;
+    delete buttonShader;
 }
 
 void Menu::render() {
@@ -92,7 +93,7 @@ void Menu::updateScore(unsigned int score) {
 bool Menu::startButton() {
     bool one = start->isClicked(InputManager::GetInstance().GetMouseX(), InputManager::GetInstance().GetMouseY());
     bool two = InputManager::GetInstance().IsMouseButtonPressed(SDL_BUTTON_LEFT);
-    std::cout << one << " " << two << std::endl;
+    // std::cout << one << " " << two << std::endl;
     return one && two;
 }
 

@@ -79,9 +79,11 @@ Bird::Bird() {
 }
 
 Bird::~Bird() {
+    delete shader;
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
+    glDeleteTextures(1, &texture);
 }
 
 void Bird::render() {
