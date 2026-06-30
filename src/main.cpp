@@ -27,4 +27,3 @@ int main(int argc, char* argv[]) {
 
 // WINEDEBUG=-all wine build-win/FlappyBird.exe
 // cmake --build build-win
-//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
