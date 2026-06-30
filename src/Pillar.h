@@ -18,6 +18,7 @@ class Pillar {
         void update();
         glm::vec2 getPosition();
         void recycle(float x, float y);
+        void setProjection(const glm::mat4& projection);
 };
 
 #endif

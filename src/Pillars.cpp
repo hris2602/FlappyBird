@@ -80,3 +80,10 @@ bool Pillars::checkCollision(float bX, float bY, float bR) {
 GLuint Pillars::getCounter() const {
     return counter;
 }
+
+void Pillars::setProjection(const glm::mat4& projection) {
+    for (PillarPair* pair : pillars)
+    {
+        pair->setProjection(projection);
+    } 
+}

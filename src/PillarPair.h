@@ -20,6 +20,7 @@ class PillarPair {
         void recycle(float x, float gapCenter_y, float gap_height);
         bool isPassed() const;
         void pass();
+        void setProjection(const glm::mat4& projection);
 };
 
 #endif

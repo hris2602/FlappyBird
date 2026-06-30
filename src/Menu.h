@@ -31,7 +31,7 @@ class Menu {
         ~Menu();
         void render();
         void updateScore(unsigned int score);
-        bool startButton();
+        bool startButton(int windowWidth, int windowHeight);
 };
 
 #endif

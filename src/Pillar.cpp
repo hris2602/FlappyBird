@@ -90,3 +90,8 @@ void Pillar::recycle(float x, float y){
 
     shader->setMat4("model", model);
 }
+
+void Pillar::setProjection(const glm::mat4& projection) {
+    shader->use();
+    shader->setMat4("projection", projection);
+}

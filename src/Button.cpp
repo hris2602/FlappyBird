@@ -73,5 +73,7 @@ void Button::render() {
 
 bool Button::isClicked(float x, float y) {
     y = 600.0f - y;
+    float width, height;
+
     return (x >= position.x && x <= position.x + size.x) && (y >= position.y && y <= position.y + size.y);
 }

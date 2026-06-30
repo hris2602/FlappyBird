@@ -16,8 +16,8 @@ Menu::Menu(TextRenderer* textRenderer) : textRenderer(textRenderer) {
     };
 
     GLuint indices[] = {
-        0, 1, 2,
-        0, 2, 3
+        0, 3, 2,
+        0, 2, 1
     };
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -52,6 +52,7 @@ Menu::Menu(TextRenderer* textRenderer) : textRenderer(textRenderer) {
 
     personalBest = "0";
     lastScore = "0";
+    bestV = 0;
 }
 
 Menu::~Menu() {
@@ -90,10 +91,14 @@ void Menu::updateScore(unsigned int score) {
     }
 }
 
-bool Menu::startButton() {
-    bool one = start->isClicked(InputManager::GetInstance().GetMouseX(), InputManager::GetInstance().GetMouseY());
-    bool two = InputManager::GetInstance().IsMouseButtonPressed(SDL_BUTTON_LEFT);
-    // std::cout << one << " " << two << std::endl;
-    return one && two;
-}
+bool Menu::startButton(int windowWidth, int windowHeight) {
+    float physX = InputManager::GetInstance().GetMouseX();
+    float physY = InputManager::GetInstance().GetMouseY();
 
+    float logicalX = physX * (800.0f / (float)windowWidth);
+    float logicalY = physY * (600.0f / (float)windowHeight);
+    bool clicked = start->isClicked(logicalX, logicalY);
+    bool pressed = InputManager::GetInstance().IsMouseButtonPressed(SDL_BUTTON_LEFT);
+    // std::cout << clicked << " " << pressed << std::endl;
+    return pressed && clicked;
+}

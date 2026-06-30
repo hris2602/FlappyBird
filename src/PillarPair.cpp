@@ -42,3 +42,8 @@ bool PillarPair::isPassed() const {
 void PillarPair::pass() {
     passed = true;
 }
+
+void PillarPair::setProjection(const glm::mat4& projection) {
+    bottom->setProjection(projection);
+    top->setProjection(projection);
+}

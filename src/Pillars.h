@@ -23,6 +23,7 @@ class Pillars {
         bool checkCollision(float bX, float bY, float bR);
         GLuint getCounter() const;
         void start();
+        void setProjection(const glm::mat4& projection);
 };
 
 #endif

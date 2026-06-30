@@ -67,6 +67,8 @@ void Application::render() {
     textRenderer->renderText(std::to_string(pillars->getCounter()), 400.0f, 500.0f, 2.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
     if(end) {
+        int currentWidth, currentHeight;
+        SDL_GetWindowSize(window, &currentWidth, &currentHeight);
         menu->render();
     }
     SDL_GL_SwapWindow(window);
@@ -86,7 +88,12 @@ void Application::update() {
     } else {
         end = true;
         menu->updateScore(pillars->getCounter());
-        bool start = menu->startButton();
+
+
+        int currentWidth, currentHeight;
+        SDL_GetWindowSize(window, &currentWidth, &currentHeight);
+
+        bool start = menu->startButton(currentWidth, currentHeight);
         end = !start;
         if(start) {
             // std::cout << "works" << std::endl;
@@ -112,6 +119,7 @@ void Application::handleEvents() {
 
                     glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
                     bird->changeProjection(projection);
+                    pillars->setProjection(projection);
 
                     glViewport(0,0, newWidth, newHeight);
                 }

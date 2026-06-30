@@ -2,6 +2,8 @@
 # Never push compiled code or CMake caches
 build/
 build-win/
+build-debug/
+build-linux/
 out/
 bin/
 CMakeCache.txt
