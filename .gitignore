@@ -4,6 +4,7 @@ build/
 build-win/
 build-debug/
 build-linux/
+build-release/
 out/
 bin/
 CMakeCache.txt
