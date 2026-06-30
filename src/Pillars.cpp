@@ -1,11 +1,12 @@
 #include "Pillars.h"
 #include "Collision.h"
 
+
 Pillars::Pillars(Shader* shader) : generator(std::random_device{}()), random(-0.4f, 0.4f), pillarShader(shader) {
     counter = 0;
 }
 
-void Pillars::start() {
+void Pillars::start(float windowWidth, float windowHeight) {
     for (auto& pair : pillars)
     {
         delete pair;
@@ -16,6 +17,10 @@ void Pillars::start() {
     {
         float gapY = random(generator);
         PillarPair* spawn = new PillarPair(start, gapY, 0.6f, pillarShader);
+        float aspectRatio = windowWidth / windowHeight;
+
+        glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
+        spawn->setProjection(projection);
         pillars.push_back(spawn);
         start += 1.7f;
     }
@@ -82,8 +87,5 @@ GLuint Pillars::getCounter() const {
 }
 
 void Pillars::setProjection(const glm::mat4& projection) {
-    for (PillarPair* pair : pillars)
-    {
-        pair->setProjection(projection);
-    } 
+    pillars.front()->setProjection(projection);
 }

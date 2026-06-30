@@ -32,14 +32,7 @@ Pillar::Pillar(float startX, float startY, Shader* shader) : position(startX, st
     glBindVertexArray(0);
 
     // shader = new Shader("src/pillarVertexShader.glsl", "src/pillarFragmentShader.glsl");
-    shader->use();
-
-    float windowWidth = 800.0f;
-    float windowHeight = 600.0f;
-    float aspectRatio = windowWidth / windowHeight;
-
-    glm::mat4 projection = glm::ortho(-aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
-    shader->setMat4("projection", projection);
+    
     shader->use();
     // position = glm::vec2(1.3f, -1.0f);
     glm::mat4 model = glm::mat4(1.0f);

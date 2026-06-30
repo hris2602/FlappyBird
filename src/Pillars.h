@@ -22,7 +22,7 @@ class Pillars {
         void update();
         bool checkCollision(float bX, float bY, float bR);
         GLuint getCounter() const;
-        void start();
+        void start(float windiwWidth, float windowHeight);
         void setProjection(const glm::mat4& projection);
 };
 

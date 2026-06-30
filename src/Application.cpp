@@ -97,7 +97,9 @@ void Application::update() {
         end = !start;
         if(start) {
             // std::cout << "works" << std::endl;
-            pillars->start();
+            int currentWidth, currentHeight;
+            SDL_GetWindowSize(window, &currentWidth, &currentHeight);
+            pillars->start(currentWidth, currentHeight);
             bird->start();
         }
     }

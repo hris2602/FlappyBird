@@ -77,7 +77,7 @@ find_package(glm CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 
 
-add_executable(${PROJECT_NAME} 
+add_executable(${PROJECT_NAME}  WIN32
     src/main.cpp
     src/glad.c 
     src/Application.cpp
